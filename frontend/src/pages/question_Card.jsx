@@ -1,49 +1,38 @@
 import React, { useState } from "react";
+import '../styles/question_card.css'
 
 function Question_card(props) {
     const { difficulty, question, options } = props;
     const [selected, setSelected] = useState("");
     console.log(selected);
+
     return (
-        <fieldset>
-            <legend>{question}</legend>
+        <div className="question-card">
+            <h1>{question}</h1>
 
-            <div>
-                <input
-                    type="radio"
-                    id="option1"
-                    name={question}
-                    value={options[0]}
-                    checked={selected === options[0]}
-                    onChange={() => setSelected(options[0])}
-                />
-                <label htmlFor="option1">{options[0]}</label>
-            </div>
+            {options.map((opt, idx) => (
+                <div key={idx} className="option">
+                    <input
+                        type="radio"
+                        id={`option${idx}`}
+                        name={question}
+                        value={opt}
+                        checked={selected === opt}
+                        onChange={() => setSelected(opt)}
+                    />
+                    <label htmlFor={`option${idx}`}>{opt}</label>
+                </div>
+            ))}
 
-            <div>
-                <input
-                    type="radio"
-                    id="option2"
-                    name={question}
-                    value={options[1]}
-                    checked={selected === options[1]}
-                    onChange={() => setSelected(options[1])}
-                />
-                <label htmlFor="option2">{options[1]}</label>
-            </div>
-
-            <div>
-                <input
-                    type="radio"
-                    id="option3"
-                    name={question}
-                    value={options[2]}
-                    checked={selected === options[2]}
-                    onChange={() => setSelected(options[2])}
-                />
-                <label htmlFor="option3">{options[2]}</label>
-            </div>
-        </fieldset>
+            <button
+                className="submit-btn"
+                onClick={() => {
+                    console.log(`ans submitted`, { selected });
+                }}
+            >
+                Submit
+            </button>
+        </div>
     );
 }
 

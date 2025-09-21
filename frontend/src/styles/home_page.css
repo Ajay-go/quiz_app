@@ -1,0 +1,29 @@
+/* Reset default margins */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Quiz page container */
+.quiz-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* full height of screen */
+    width: 100vw;
+    /* full width of screen */
+    background: linear-gradient(135deg, #141421, #1e1e2f);
+    padding: 20px;
+    box-sizing: border-box;
+    /* include padding in width calc */
+}
+
+.quiz-page h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}

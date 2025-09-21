@@ -1,0 +1,90 @@
+/* Question_card.css */
+
+.question-card {
+    width: 80%;
+    /* take 80% of the available width */
+    max-width: 700px;
+    /* optional: don’t let it get too wide */
+    margin: 20px auto;
+    /* center horizontally */
+    padding: 20px 25px;
+    background: #1e1e2f;
+    /* dark theme */
+    color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    transition: transform 0.2s ease-in-out;
+    display: block;
+    /* ensures it behaves like a block element */
+}
+
+.question-card:hover {
+    transform: translateY(-3px);
+}
+
+.question-card h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffcc70;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 8px 12px;
+    background: #2a2a40;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option:hover {
+    background: #3a3a55;
+}
+
+.option input[type="radio"] {
+    accent-color: #ffcc70;
+    /* modern browsers */
+    margin-right: 10px;
+}
+
+.option label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #ffcc70;
+    color: #1e1e2f;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #e6b85f;
+}
+
+/* ✅ Responsive for mobile */
+@media (max-width: 600px) {
+    .question-card {
+        width: 95%;
+        /* take more width on small screens */
+        padding: 15px;
+    }
+
+    .question-card h1 {
+        font-size: 18px;
+    }
+
+    .option label {
+        font-size: 14px;
+    }
+}
