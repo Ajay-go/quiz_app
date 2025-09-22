@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../styles/question_card.css'
+import { useParams } from "react-router-dom";
 
 function Question_card(props) {
     const { difficulty, question, options } = props;
