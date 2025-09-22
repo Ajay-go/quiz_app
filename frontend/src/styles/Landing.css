@@ -1,0 +1,167 @@
+/* Landing.css */
+
+/* Container background + full height */
+.container {
+  min-height: 100vh;
+  background: #12121c; /* darker background than card */
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar (reusing header theme) */
+.nav-bar {
+  padding: 1rem 10%;
+  background: #1e1e2f;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffcc70;
+}
+
+.signup-login-btn {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  gap: 10px; /* optional spacing between buttons */
+}
+
+/* Sign-up / Login / Profile buttons */
+.signup-btn,
+.profile-btn {
+    box-sizing: content-box;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  background: #ffcc70;
+  color: #1e1e2f;
+  min-width: 80px;
+  white-space: nowrap;
+  font-size: 1rem;
+  min-width: 80px;
+}
+
+.signup-btn:hover {
+  background: #e6b85f;
+}
+
+.signup-login-btn .login-btn {
+    box-sizing: content-box;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.2s ease-in-out;
+  background: transparent;
+  color: #ffcc70;
+  white-space: nowrap;
+  min-width: 80px;
+  border: 2px solid #ffcc70;
+
+}
+
+.login-btn:hover {
+  background: #ffcc70;
+  color: #1e1e2f;
+}
+
+.profile-btn {
+  background: #ffcc70;
+  color: #1e1e2f;
+}
+
+.profile-btn:hover {
+  background: #e6b85f;
+}
+
+/* Input card (matching question-card style) */
+.input-card {
+  width: 80%;
+  max-width: 500px;
+  margin: 10rem auto;
+  padding: 25px 30px;
+  background: #1e1e2f;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.input-card:hover {
+  transform: translateY(-3px);
+}
+
+.input-card label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #ffcc70;
+  text-align: left;
+}
+
+.input-card input {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  background: #2a2a40;
+  color: #ffffff;
+  outline: none;
+}
+
+.input-card input:focus {
+  border: 2px solid #ffcc70;
+}
+
+/* Proceed button */
+.proceed-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #ffcc70;
+  color: #1e1e2f;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.proceed-btn:hover {
+  background: #e6b85f;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+  .brand-name {
+    font-size: 1.4rem;
+  }
+
+  .input-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .input-card label {
+    font-size: 16px;
+  }
+
+  .input-card input {
+    font-size: 14px;
+  }
+
+  .proceed-btn {
+    font-size: 14px;
+  }
+}

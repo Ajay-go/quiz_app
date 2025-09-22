@@ -3,14 +3,14 @@
 .header {
     padding-top: 3.5rem;
     padding-bottom: 0.5rem;
-    width: 95%;
+    width: 100%;
     background: #1e1e2f;
     /* dark background */
     color: #ffffff;
     /* white text */
-    padding-left: 2%;
-    padding-right: 20%;
-    margin-right: 20%;
+    padding-left: 10%;
+    padding-right: 10%;
+    /* margin-right: 20%; */
     display: flex;
     justify-content: space-between;
     /* space items evenly */
