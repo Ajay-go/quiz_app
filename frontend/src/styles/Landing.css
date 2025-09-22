@@ -65,6 +65,8 @@
   color: #ffcc70;
   white-space: nowrap;
   min-width: 80px;
+  border: 2px solid #ffcc70;
+
 }
 
 .login-btn:hover {
