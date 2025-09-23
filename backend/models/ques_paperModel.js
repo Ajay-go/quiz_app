@@ -1,4 +1,4 @@
-import mongoose  from "mongoose";
+const mongoose = require("mongoose");
 
 const paper_Schema = new mongoose.Schema({
     paper_id :{
@@ -6,13 +6,33 @@ const paper_Schema = new mongoose.Schema({
         unique : true,
         required : true,
     },
-    questions : {
-        type: Array,
-        required : true,
-    }
+    questionsAndAnswers : [
+        {
+            question_text: {
+                type: String, 
+                unique: true,
+            }, 
+            options: [
+                {
+                    option_id : {
+                    type: String,
+                    required: true
+                    },
+                    option_text: {
+                        type: String,
+                        required: true
+                    }
+                }
+            ],
+            answer: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 })
 
-const paper = mongoose.model("Paper",paper_Schema);
+const Paper = mongoose.model("Paper",paper_Schema);
 
 
-module.exports = paper;
+module.exports = Paper;
