@@ -1,6 +1,6 @@
-import User from "../models/userModels.js";
+const User = require("../models/userModels")
 
-export const handleSignup = async (req, res) => {
+const handleSignup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -13,17 +13,21 @@ export const handleSignup = async (req, res) => {
             return res.status(400).json({ error: "Email already registered" });
         }
 
-        const newUser = new User({ name, email, password }); // plain password for now
-        await newUser.save();
+        const newUser = await User.create({
+            name: name,
+            email : email,
+            password: password
+        })
 
-        res.status(201).json({ message: "User registered successfully", userId: newUser._id });
+        if(newUser) res.status(201).json({ message: "User registered successfully", userId: newUser._id });
+        else res.status(400).json({message : "There is some error"});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
     }
 };
 
-export const handleLogin = async (req, res) => {
+const handleLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -40,10 +44,14 @@ export const handleLogin = async (req, res) => {
             return res.status(401).json({ error: "Invalid password" });
         }
 
-        res.status(200).json({ message: "Login successful", userId: existingUser._id });
+        res.status(200).json({ message: "Login successful", userId: existingUser._id, name: existingUser.name, email: existingUser.email });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
     }
 };
   
+module.exports = {
+    handleLogin,
+    handleSignup
+}

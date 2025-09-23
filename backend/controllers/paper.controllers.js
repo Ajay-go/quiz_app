@@ -1,8 +1,8 @@
-import Paper from "../models/ques_paperModel.js";
+const Paper = require("../models/ques_paperModel")
 
-export const get_questions = async (req, res) => {
+const get_paper = async (req, res) => {
     try {
-        const { paper_id } = req.params; // e.g., /api/papers/1
+        const { paper_id } = req.params; // e.g., /quiz/123
 
         if (!paper_id) {
             return res.status(400).json({ error: "paper_id is required" });
@@ -13,9 +13,56 @@ export const get_questions = async (req, res) => {
             return res.status(404).json({ error: "Paper not found" });
         }
 
-        res.status(200).json({ questions: paper.questions });
+        res.status(200).json({ questionsAndAnswers: paper.questionsAndAnswers });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
     }
 };
+
+const upload_paper = async (req, res) => {
+    try{
+        const {paper_id, questionsAndAnswers} = req.body;
+
+        const result = await Paper.create({
+            paper_id: paper_id,
+            questionsAndAnswers: questionsAndAnswers
+        })
+
+        if(!result) return res.status(400).json({
+            message: "paper_id and questions are required"
+        }) 
+        else return res.status(201).json(result.paper_id);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error: "Server error"});
+    }
+}
+
+const add_more_question = async (req, res) => {
+    const {paper_id} = req.params;
+    const {questionsAndAnswers} = req.body;
+
+    console.log(paper_id);
+    console.log(questionsAndAnswers);
+
+    if(!paper_id || !questionsAndAnswers) return res.status(400).json({message: "insufficient details"});
+
+    const result = await Paper.findOneAndUpdate(
+        {paper_id: paper_id}, 
+        {
+            $push: {
+                questionsAndAnswers: questionsAndAnswers
+            }
+        }
+    );
+
+    if(!result) return res.status(404).json({message: "paper not found"});
+    else return res.json({message: "updation is successfull"});
+}
+
+module.exports = {
+    get_paper,
+    upload_paper,
+    add_more_question
+}
