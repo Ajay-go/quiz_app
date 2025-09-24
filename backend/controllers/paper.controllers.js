@@ -22,10 +22,11 @@ const get_paper = async (req, res) => {
 
 const upload_paper = async (req, res) => {
     try{
-        const {paper_id, questionsAndAnswers} = req.body;
+        const {paper_id, questionsAndAnswers, teacher_id} = req.body;
 
         const result = await Paper.create({
             paper_id: paper_id,
+            teacher_id: teacher_id,
             questionsAndAnswers: questionsAndAnswers
         })
 

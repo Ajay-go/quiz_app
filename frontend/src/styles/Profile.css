@@ -36,11 +36,13 @@
 /* Info text styles */
 .user-name-profile,
 .user-email-profile,
-.user-password-profile {
+.user-password-profile,
+.user-role-profile {
     font-size: 1.1rem;
     margin: 0.75rem 0;
     color: #ffcc70;
     word-wrap: break-word;
+    font-weight: bold;
 }
 
 /* Button group layout */

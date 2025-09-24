@@ -7,13 +7,16 @@ const Profile = () => {
     const navigate = useNavigate();
 
     const navigateToHome = () => {
-        navigate("/");
+        const data = JSON.parse(localStorage.getItem("userData"));
+        console.log(data);
+        if(data.userRole === "Student") navigate("/");
+        else if(data.userRole === "Teacher") navigate("/teacher");
     }
 
     const handleLogoutClick = () => {
         setUser(null);
         localStorage.removeItem("userData");
-        navigateToHome();
+        navigate("/");
     }
 
     useEffect(() => {
@@ -28,6 +31,7 @@ const Profile = () => {
             <p className='user-name-profile' >Name: {user?.userName}</p>
             <p className='user-email-profile'>Email: {user?.userEmail}</p>
             <p className='user-password-profile'>Password: {user?.userPassword}</p>
+            <p className='user-role-profile'>Password: {user?.userRole}</p>
             <div className="btns">
                 <button className='home-btn' onClick={navigateToHome}>Home</button>
                 <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>

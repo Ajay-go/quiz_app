@@ -14,9 +14,10 @@ const Signup = () => {
         localStorage.setItem("userData", JSON.stringify(data));
         return new Promise((resolve, reject) => {
             console.log("form is submitting");
-            console.log("data");
+            console.log({data});
             setTimeout(() => {
-                navigate("/");
+                if(data.userRole === "Student") navigate("/");
+                else if(data.userRole === "Teacher") navigate("/teacher");
                 resolve();
             }, 5000);
 
@@ -57,6 +58,16 @@ const Signup = () => {
         })} className='input-field' placeholder='Password' />
 
         <span>{errors.userPassword?.message}</span>
+
+        <select name="" id="" {...register("userRole", {
+            required: "Select your role"
+        })} className='input-field' defaultValue="">
+            <option value="" disabled>Click to select your role</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+        </select>
+
+        <span>{errors.userRole?.message}</span>
 
         <input type="submit" disabled={isSubmitting} value={isSubmitting ? "Submitting" : "Submit"} className='submit-btn' />
       </form>
