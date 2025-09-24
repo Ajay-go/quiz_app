@@ -6,6 +6,10 @@ const paper_Schema = new mongoose.Schema({
         unique : true,
         required : true,
     },
+    teacher_id: {
+        type: String,
+        required: true
+    },
     questionsAndAnswers : [
         {
             question_text: {

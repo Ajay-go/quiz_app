@@ -15,7 +15,8 @@ const Login = () => {
             console.log(data);
             localStorage.setItem("userData", JSON.stringify(data));
             setTimeout(() => {
-                navigate("/");
+                if(data.userRole === "Student") navigate("/");
+                else if(data.userRole === "Teacher") navigate("/teacher");
                 resolve();
             }, 5000);
 
