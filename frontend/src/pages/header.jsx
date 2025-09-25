@@ -6,7 +6,6 @@ function Header({ candidateId, testId, testName }) {
         <div className="header">
             <h3>Candidate ID: {candidateId}</h3>
             <h3>Test ID: {testId}</h3>
-            <h3>Test Name: {testName}</h3>
         </div>
     );
 }
