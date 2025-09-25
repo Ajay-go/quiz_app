@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import '../styles/question_card.css';
 
-function Question_card({ question, options, difficulty, correctAnswer, onAnswerSubmit, defaultValue = "" }) {
+function Question_card({ question, options, correctAnswer, onAnswerSubmit, defaultValue = "" }) {
     const [selected, setSelected] = useState(defaultValue);
+
     useEffect(() => {
         setSelected(defaultValue); // reset selection when question changes
     }, [question, defaultValue]);
@@ -11,11 +12,7 @@ function Question_card({ question, options, difficulty, correctAnswer, onAnswerS
         if (!selected) return alert("Select an option first");
 
         const questionScore = selected === correctAnswer ? 1 : 0;
-        console.log(correctAnswer)
-        console.log(selected, correctAnswer);
-        console.log("correctAnwer:", correctAnswer);
         if (onAnswerSubmit) {
-            console.log(questionScore);
             onAnswerSubmit(questionScore);
         }
     };
@@ -40,7 +37,9 @@ function Question_card({ question, options, difficulty, correctAnswer, onAnswerS
                 ))}
             </div>
 
-            <button className="submit-btn" onClick={handleSubmit}>Submit question</button>
+            <button className="submit-btn" onClick={handleSubmit}>
+                Submit question
+            </button>
         </div>
     );
 }

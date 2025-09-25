@@ -45,30 +45,32 @@ function Quiz_Page() {
     const totalQuestions = quizData.questions.length;
 
     const handleAnswerSubmit = (questionScore) => {
-        setScore(prev => prev + questionScore);
+        const newScore = score + questionScore;
+        setScore(newScore);
 
-        if (currIndex < totalQuestions - 1) handleNext();
-        console.log("currentScore ", score);
-        if (currIndex < totalQuestions - 1) handleNext();
-        if(currIndex === totalQuestions - 1) handleSubmit();
+        if (currIndex < totalQuestions - 1) {
+            handleNext();
+        } else {
+            handleSubmit(newScore);
+        }
     };
 
     const handleNext = () => {
         setCurrIndex(prev => prev + 1);
     };
 
-
-    const handleSubmit = () => {
-        if(currIndex < totalQuestions - 1) {
-            alert("complete test first");
-            return;
-        }
-        navigate("/completed", { state: { score} });
+    const handleSubmit = (finalScore) => {
+        navigate("/completed", { state: { score: finalScore } });
     };
 
     return (
         <>
-            <Header candidateId={candid} testId={testId} testName={quizData.testName || "Quiz"} />
+            <Header
+                candidateId={candid}
+                testId={testId}
+                testName={quizData.testName || "Quiz"}
+            />
+
             <div className="quiz-page">
                 <Question_card
                     question={quizData.questions[currIndex]}
@@ -81,12 +83,6 @@ function Quiz_Page() {
                     correctAnswer={quizData.answers[currIndex]}
                     onAnswerSubmit={handleAnswerSubmit}
                 />
-
-                <div className="quiz-navigation">
-                    <button className="submit-btn" onClick={handleSubmit}>
-                        Submit Quiz
-                    </button>
-                </div>
             </div>
         </>
     );

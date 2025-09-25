@@ -1,15 +1,10 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useForm } from "react-hook-form";
-import "../styles/Signup.css"
+import "../styles/Signup.css";
 import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-
     const navigate = useNavigate();
 
     const handleFormSignup = async (data) => {
@@ -19,8 +14,8 @@ const Signup = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
-            }
-            );
+            });
+
             const result = await res.json();
             console.log(result);
 
@@ -33,142 +28,88 @@ const Signup = () => {
                 }));
                 alert("Signup successful!");
                 navigate("/");
+            } else {
+                alert(result.message || "Some error occurred");
             }
-
-            else {
-                alert("some error occured")
-            }
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong");
         }
-        catch (err) {
-            console.log(err);
-            alert("something went wrong");
-        }
+    };
 
-        const handleFormSignup = async (data) => {
-            console.log(data);
-            try {
-                const res = await fetch("https://quiz-app-sigma-dun-80.vercel.app/signup", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                }
-                );
-                const result = await res.json();
-                console.log(result);
+    return (
+        <div className="signup-container">
+            <h1>Signup</h1>
 
-                if (res.ok) {
-                    localStorage.setItem("user", JSON.stringify({
-                        id: result.userId,
-                        role: result.role,
-                        name: data.userName,
-                        email: data.userEmail
-                    }));
-                    alert("Signup successful!");
-                    navigate("/");
-                }
+            <form className="signup-form" onSubmit={handleSubmit(handleFormSignup)}>
+                {/* Name */}
+                <input
+                    type="text"
+                    id="user-name"
+                    {...register("userName", { required: "Name is required" })}
+                    className="input-field"
+                    placeholder="Full Name"
+                />
+                <span>{errors.userName?.message}</span>
 
-                else {
-                    alert("some error occured")
-                }
-            }
-            catch (err) {
-                console.log(err);
-                alert("something went wrong");
-            }
+                {/* Email */}
+                <input
+                    type="email"
+                    id="user-email"
+                    {...register("userEmail", {
+                        required: "Email is required",
+                        pattern: {
+                            value: /^\S+@\S+$/i,
+                            message: "Invalid email"
+                        }
+                    })}
+                    className="input-field"
+                    placeholder="Email"
+                />
+                <span>{errors.userEmail?.message}</span>
 
-        }
+                {/* Password */}
+                <input
+                    type="password"
+                    id="user-password"
+                    {...register("userPassword", {
+                        required: "Password is required",
+                        minLength: {
+                            value: 8,
+                            message: "Min length for a valid password is 8"
+                        }
+                    })}
+                    className="input-field"
+                    placeholder="Password"
+                />
+                <span>{errors.userPassword?.message}</span>
 
-        return (
-            <div className="signup-container">
-                return (
-                <div className="signup-container">
+                {/* Role */}
+                <select
+                    {...register("userRole", { required: "Select your role" })}
+                    className="input-field"
+                    defaultValue=""
+                >
+                    <option value="" disabled>Click to select your role</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Student">Student</option>
+                </select>
+                <span>{errors.userRole?.message}</span>
 
-                    <h1>Signup</h1>
-                    <h1>Signup</h1>
+                {/* Submit */}
+                <input
+                    type="submit"
+                    disabled={isSubmitting}
+                    value={isSubmitting ? "Submitting..." : "Submit"}
+                    className="submit-btn"
+                />
+            </form>
 
-                    <form className="signup-form" onSubmit={handleSubmit(handleFormSignup)}>
-                        {/* <label htmlFor="user-name">Full Name: </label> */}
-                        <input type="text" name="" id="user-name" {...register("userName", {
-                            required: "Name is required"
-                        })} className='input-field' placeholder='Full Name' />
-                        <form className="signup-form" onSubmit={handleSubmit(handleFormSignup)}>
-                            {/* <label htmlFor="user-name">Full Name: </label> */}
-                            <input type="text" name="" id="user-name" {...register("userName", {
-                                required: "Name is required"
-                            })} className='input-field' placeholder='Full Name' />
+            <p className="login-sentence">
+                Already have an account? <Link to="/login">Login</Link>
+            </p>
+        </div>
+    );
+};
 
-                            <span>{errors.userName?.message}</span>
-                            <span>{errors.userName?.message}</span>
-
-                            {/* <label htmlFor="user-email">Email: </label> */}
-                            <input type="email" name="" id="user-email" {...register("userEmail", {
-                                required: "Email is required",
-                                pattern: {
-                                    value: /^\S+@\S+$/i,
-                                    message: "Invalid email"
-                                }
-                            })} className='input-field' placeholder='Email' />
-                            {/* <label htmlFor="user-email">Email: </label> */}
-                            <input type="email" name="" id="user-email" {...register("userEmail", {
-                                required: "Email is required",
-                                pattern: {
-                                    value: /^\S+@\S+$/i,
-                                    message: "Invalid email"
-                                }
-                            })} className='input-field' placeholder='Email' />
-
-                            <span>{errors.userEmail?.message}</span>
-                            <span>{errors.userEmail?.message}</span>
-
-                            {/* <label htmlFor="user-password">Password: </label> */}
-                            <input type="password" name="" id="user-password" {...register("userPassword", {
-                                required: "Password is required",
-                                minLength: {
-                                    value: 8,
-                                    message: "Min length for a valid password is 8"
-                                }
-                            })} className='input-field' placeholder='Password' />
-                            {/* <label htmlFor="user-password">Password: </label> */}
-                            <input type="password" name="" id="user-password" {...register("userPassword", {
-                                required: "Password is required",
-                                minLength: {
-                                    value: 8,
-                                    message: "Min length for a valid password is 8"
-                                }
-                            })} className='input-field' placeholder='Password' />
-
-                            <span>{errors.userPassword?.message}</span>
-                            <span>{errors.userPassword?.message}</span>
-
-                            <select name="" id="" {...register("userRole", {
-                                required: "Select your role"
-                            })} className='input-field' defaultValue="">
-                                <option value="" disabled>Click to select your role</option>
-                                <option value="Teacher">Teacher</option>
-                                <option value="Student">Student</option>
-                            </select>
-                            <select name="" id="" {...register("userRole", {
-                                required: "Select your role"
-                            })} className='input-field' defaultValue="">
-                                <option value="" disabled>Click to select your role</option>
-                                <option value="Teacher">Teacher</option>
-                                <option value="Student">Student</option>
-                            </select>
-
-                            <span>{errors.userRole?.message}</span>
-                            <span>{errors.userRole?.message}</span>
-
-                            <input type="submit" disabled={isSubmitting} value={isSubmitting ? "Submitting" : "Submit"} className='submit-btn' />
-                        </form>
-                        <input type="submit" disabled={isSubmitting} value={isSubmitting ? "Submitting" : "Submit"} className='submit-btn' />
-                    </form>
-
-                    <p className='login-sentence'>have an accound?<Link to="/login">Login</Link></p>
-                </div>
-                )
-                <p className='login-sentence'>have an accound?<Link to="/login">Login</Link></p>
-            </div>
-        )
-    }
-
-    export default Signup
+export default Signup;
