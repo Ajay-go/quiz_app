@@ -6,6 +6,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Teacher_home_Page from './pages/Teacher_home_Page'
+import Final_score from './pages/greetings'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' element= {<Login />} />
         <Route path='/profile' element = {<Profile />} />
         <Route path='/teacher' element= {<Teacher_home_Page />} />
+        <Route path='/completed' element={<Final_score />} />
       </Routes>
     </BrowserRouter>
   )
