@@ -2,9 +2,9 @@ const User = require("../models/userModels")
 
 const handleSignup = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !role) {
             return res.status(400).json({ error: "All fields are required" });
         }
 
@@ -16,7 +16,8 @@ const handleSignup = async (req, res) => {
         const newUser = await User.create({
             name: name,
             email : email,
-            password: password
+            password: password,
+            role : role
         })
 
         if(newUser) res.status(201).json({ message: "User registered successfully", userId: newUser._id });
@@ -44,7 +45,7 @@ const handleLogin = async (req, res) => {
             return res.status(401).json({ error: "Invalid password" });
         }
 
-        res.status(200).json({ message: "Login successful", userId: existingUser._id, name: existingUser.name, email: existingUser.email });
+        res.status(200).json({ message: "Login successful", userId: existingUser._id, name: existingUser.name, email: existingUser.email, role: existingUser.role });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
