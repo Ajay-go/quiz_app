@@ -23,10 +23,10 @@ const Signup = () => {
 
             if (res.ok) {
                 localStorage.setItem("user", JSON.stringify({
-                    id: result.userId,  
-                    role: result.role, 
-                    name: data.userName, 
-                    email: data.userEmail 
+                    id: result.userId,
+                    role: result.role,
+                    name: data.userName,
+                    email: data.userEmail
                 }));
                 alert("Signup successful!");
                 navigate("/");

@@ -46,14 +46,21 @@ function Quiz_Page() {
 
     const handleAnswerSubmit = (questionScore) => {
         setScore(prev => prev + questionScore);
+        console.log("currentScore ", score);
         if (currIndex < totalQuestions - 1) handleNext();
+        if(currIndex === totalQuestions - 1) handleSubmit();
     };
 
     const handleNext = () => {
         setCurrIndex(prev => prev + 1);
+        console.log(currIndex, totalQuestions);
     };
 
     const handleSubmit = () => {
+        if(currIndex < totalQuestions - 1) {
+            alert("complete test first");
+            return;
+        }
         navigate("/completed", { state: { score} });
     };
 
