@@ -31,7 +31,7 @@ const Profile = () => {
             <p className='user-name-profile' >Name: {user?.userName}</p>
             <p className='user-email-profile'>Email: {user?.userEmail}</p>
             <p className='user-password-profile'>Password: {user?.userPassword}</p>
-            <p className='user-role-profile'>Password: {user?.userRole}</p>
+            <p className='user-role-profile'>User type: {user?.userRole}</p>
             <div className="btns">
                 <button className='home-btn' onClick={navigateToHome}>Home</button>
                 <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>

@@ -62,7 +62,7 @@ const Signup = () => {
         <select name="" id="" {...register("userRole", {
             required: "Select your role"
         })} className='input-field' defaultValue="">
-            <option value="" disabled>Click to select your role</option>
+            <option value="" disabled>Register as</option>
             <option value="Teacher">Teacher</option>
             <option value="Student">Student</option>
         </select>
