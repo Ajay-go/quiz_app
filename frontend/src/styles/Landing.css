@@ -3,7 +3,8 @@
 /* Container background + full height */
 .container {
   min-height: 100vh;
-  background: #12121c; /* darker background than card */
+  background: #12121c;
+  /* darker background than card */
   color: #ffffff;
   font-family: Arial, sans-serif;
 }
@@ -27,15 +28,17 @@
 
 .signup-login-btn {
   display: flex;
-  justify-content: center; /* center horizontally */
+  justify-content: center;
+  /* center horizontally */
   align-items: center;
-  gap: 10px; /* optional spacing between buttons */
+  gap: 10px;
+  /* optional spacing between buttons */
 }
 
 /* Sign-up / Login / Profile buttons */
 .signup-btn,
 .profile-btn {
-    box-sizing: content-box;
+  box-sizing: content-box;
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
@@ -44,10 +47,11 @@
   transition: background 0.2s ease-in-out;
   background: #ffcc70;
   color: #1e1e2f;
-  min-width: 80px;
+  min-width: 100px;
   white-space: nowrap;
   font-size: 1rem;
   min-width: 80px;
+  margin-left: 1%;
 }
 
 .signup-btn:hover {
@@ -55,7 +59,7 @@
 }
 
 .signup-login-btn .login-btn {
-    box-sizing: content-box;
+  box-sizing: content-box;
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
