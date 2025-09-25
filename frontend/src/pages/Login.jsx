@@ -24,11 +24,14 @@ const Login = () => {
       let response = await res.json();
       console.log(response);
       if (res.ok) {
+        
         localStorage.removeItem("user");
         localStorage.setItem("user", JSON.stringify(response));
         const role = response.role;
         alert("login successful");
-        navigate('/');
+        if(role === "Student") navigate('/');
+        else navigate("/teacher");
+
       } else {
         alert(response.error || "Login failed ");
       }

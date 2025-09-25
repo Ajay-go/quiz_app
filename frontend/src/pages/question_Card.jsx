@@ -9,9 +9,11 @@ function Question_card({ question, options, difficulty, correctAnswer, onAnswerS
 
     const handleSubmit = () => {
         if (!selected) return alert("Select an option first");
-        
+
         const questionScore = selected === correctAnswer ? 1 : 0;
         console.log(correctAnswer)
+        console.log(selected, correctAnswer);
+        console.log("correctAnwer:", correctAnswer);
         if (onAnswerSubmit) {
             console.log(questionScore);
             onAnswerSubmit(questionScore);
