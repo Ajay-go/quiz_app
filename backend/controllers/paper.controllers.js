@@ -2,7 +2,7 @@ const Paper = require("../models/ques_paperModel")
 
 const get_paper = async (req, res) => {
     try {
-        const { paper_id } = req.params; // e.g., /quiz/123
+        const { paper_id } = req.params; // e.g., /quiz/1
 
         if (!paper_id) {
             return res.status(400).json({ error: "paper_id is required" });
@@ -13,12 +13,20 @@ const get_paper = async (req, res) => {
             return res.status(404).json({ error: "Paper not found" });
         }
 
-        res.status(200).json({ questionsAndAnswers: paper.questionsAndAnswers });
+        // Send the new structure
+        res.status(200).json({
+            paper_id: paper.paper_id,
+            teacher_id: paper.teacher_id,
+            questions: paper.questions,
+            answers: paper.answers,
+            options: paper.options
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server error" });
     }
 };
+  
 
 const upload_paper = async (req, res) => {
     try{
