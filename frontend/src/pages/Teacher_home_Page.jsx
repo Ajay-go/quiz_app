@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuestionInputCard from './QuestionInputCard';
-import "../styles/Teacher_home_Page.css";
+import "../styles/Teacher_home_page.css";
 
 const Teacher_home_Page = () => {
     const navigate = useNavigate();
