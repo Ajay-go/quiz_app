@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/final_score.css";
+import "../styles/final_Score.css";
 
 function Final_score() {
     const location = useLocation();
