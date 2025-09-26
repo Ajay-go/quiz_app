@@ -27,7 +27,8 @@ const Signup = () => {
                     email: data.userEmail
                 }));
                 alert("Signup successful!");
-                navigate("/");
+                if(result.role === "Student")navigate("/");
+                else navigate("/teacher");
             } else {
                 alert(result.message || "Some error occurred");
             }
