@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Question_card from "./question_card";
+import Question_card from "./question_Card";
 import "../styles/home_page.css";
 import Header from "./header";
 import { useParams, useNavigate } from "react-router-dom";
