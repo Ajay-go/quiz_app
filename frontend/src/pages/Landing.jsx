@@ -9,15 +9,12 @@ const Landing = () => {
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser)); // parse JSON string
-        }
+        if (storedUser) setUser(JSON.parse(storedUser));
     }, []);
 
     const handleProceedClick = () => {
         if (!user) return alert("Login to proceed");
         if (!testId) return alert("Enter a valid Test ID");
-        
         navigate(`/quiz/${testId}`);
     }
 
@@ -29,19 +26,18 @@ const Landing = () => {
         <div className='container'>
             <nav className='nav-bar'>
                 <h1 className='brand-name'>Quiz App</h1>
-                <div className="nav-buttons">
-                    {!user ? (
-                        <>
-                            <button className='signup-btn' onClick={handleSignupClick}>Sign-up</button>
-                            <button className="login-btn" onClick={handleLoginClick}>Login</button>
-                        </>
-                    ) : (
-                        <>
-                            <span className='user-name'>Hello, {user.name}</span>
-                            <button className='profile-btn' onClick={handleProfileClick}>Profile</button>
-                        </>
-                    )}
-                </div>
+
+                {!user ? (
+                    <div className="nav-buttons">
+                        <button className='signup-btn' onClick={handleSignupClick}>Sign-up</button>
+                        <button className="login-btn" onClick={handleLoginClick}>Login</button>
+                    </div>
+                ) : (
+                    <div className="nav-buttons">
+                        <span className='user-name'>Hello, {user.name}</span>
+                        <button className='profile-btn' onClick={handleProfileClick}>Profile</button>
+                    </div>
+                )}
             </nav>
 
             <div className="input-card">

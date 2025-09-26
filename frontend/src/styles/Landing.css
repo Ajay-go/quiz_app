@@ -1,15 +1,18 @@
-/* Landing.css */
+/* -------------------------
+   Landing Page Styles
+--------------------------*/
 
-/* Container background + full height */
+/* Container */
 .container {
   min-height: 100vh;
   background: #12121c;
-  /* darker background than card */
   color: #ffffff;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Navbar (reusing header theme) */
+/* Navbar */
 .nav-bar {
   padding: 1rem 10%;
   background: #1e1e2f;
@@ -18,59 +21,58 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
+/* Brand name */
 .brand-name {
   font-size: 1.8rem;
   font-weight: bold;
   color: #ffcc70;
+  margin: 10px;
 }
 
-.signup-login-btn {
+/* Navbar buttons container */
+.nav-buttons {
   display: flex;
-  justify-content: center;
-  /* center horizontally */
   align-items: center;
   gap: 10px;
-  /* optional spacing between buttons */
+  /* space between buttons */
 }
 
-/* Sign-up / Login / Profile buttons */
+/* Buttons */
 .signup-btn,
+.login-btn,
 .profile-btn {
-  box-sizing: content-box;
   padding: 8px 16px;
-  border: none;
   border-radius: 8px;
+  height: 40px;
+  width: 120px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Sign-up */
+.signup-btn {
   background: #ffcc70;
   color: #1e1e2f;
-  min-width: 100px;
-  white-space: nowrap;
-  font-size: 1rem;
-  min-width: 80px;
-  margin-left: 1%;
+  border: none;
 }
 
 .signup-btn:hover {
   background: #e6b85f;
 }
 
-.signup-login-btn .login-btn {
-  box-sizing: content-box;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background 0.2s ease-in-out;
+/* Login */
+.login-btn {
   background: transparent;
   color: #ffcc70;
-  white-space: nowrap;
-  min-width: 80px;
   border: 2px solid #ffcc70;
-
 }
 
 .login-btn:hover {
@@ -78,20 +80,29 @@
   color: #1e1e2f;
 }
 
+/* Profile */
 .profile-btn {
   background: #ffcc70;
   color: #1e1e2f;
+  border: none;
 }
 
 .profile-btn:hover {
   background: #e6b85f;
 }
 
-/* Input card (matching question-card style) */
+/* User greeting */
+.user-name {
+  font-weight: bold;
+  color: #ffcc70;
+}
+
+/* Input card */
 .input-card {
   width: 80%;
   max-width: 500px;
-  margin: 10rem auto;
+  margin: auto;
+  margin-top: 10vh;
   padding: 25px 30px;
   background: #1e1e2f;
   border-radius: 12px;
@@ -104,14 +115,7 @@
   transform: translateY(-3px);
 }
 
-.input-card label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #ffcc70;
-  text-align: left;
-}
-
+/* Input field */
 .input-card input {
   width: 100%;
   padding: 10px 12px;
@@ -146,7 +150,7 @@
   background: #e6b85f;
 }
 
-/* ✅ Responsive */
+/* Responsive */
 @media (max-width: 600px) {
   .brand-name {
     font-size: 1.4rem;
@@ -155,17 +159,15 @@
   .input-card {
     width: 90%;
     padding: 20px;
+    margin-top: 5vh;
   }
 
-  .input-card label {
-    font-size: 16px;
-  }
-
-  .input-card input {
+  .input-card input,
+  .proceed-btn,
+  .signup-btn,
+  .login-btn,
+  .profile-btn {
     font-size: 14px;
-  }
-
-  .proceed-btn {
-    font-size: 14px;
+    padding: 6px 12px;
   }
 }
