@@ -2,7 +2,7 @@ const Paper = require("../models/ques_paperModel")
 
 const get_paper = async (req, res) => {
     try {
-        const { paper_id } = req.params; // e.g., /quiz/1
+        const { paper_id } = req.params; 
 
         if (!paper_id) {
             return res.status(400).json({ error: "paper_id is required" });
@@ -30,12 +30,14 @@ const get_paper = async (req, res) => {
 
 const upload_paper = async (req, res) => {
     try{
-        const {paper_id, questionsAndAnswers, teacher_id} = req.body;
+        const {data} = req.body;
 
         const result = await Paper.create({
-            paper_id: paper_id,
-            teacher_id: teacher_id,
-            questionsAndAnswers: questionsAndAnswers
+            paper_id: data.paper_id,
+            teacher_id: data.teacher_id,
+            questions: data.questions,
+            answers: data.answers,
+            options: data.options
         })
 
         if(!result) return res.status(400).json({
@@ -49,26 +51,40 @@ const upload_paper = async (req, res) => {
 }
 
 const add_more_question = async (req, res) => {
-    const {paper_id} = req.params;
-    const {questionsAndAnswers} = req.body;
+    try {
+        const { paper_id } = req.params;
+        const { question, answer, options } = req.body;
 
-    console.log(paper_id);
-    console.log(questionsAndAnswers);
-
-    if(!paper_id || !questionsAndAnswers) return res.status(400).json({message: "insufficient details"});
-
-    const result = await Paper.findOneAndUpdate(
-        {paper_id: paper_id}, 
-        {
-            $push: {
-                questionsAndAnswers: questionsAndAnswers
-            }
+        if (!paper_id || !question || !answer || !options) {
+            return res.status(400).json({ message: "Insufficient details" });
         }
-    );
 
-    if(!result) return res.status(404).json({message: "paper not found"});
-    else return res.json({message: "updation is successfull"});
-}
+        const result = await Paper.findOneAndUpdate(
+            { paper_id: Number(paper_id) },
+            {
+                $push: {
+                    questions: question,
+                    answers: answer,
+                    options: options
+                }
+            },
+            { new: true } 
+        );
+
+        if (!result) {
+            return res.status(404).json({ message: "Paper not found" });
+        }
+
+        res.json({
+            message: "Question added successfully",
+            updatedPaper: result
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+};
+
 
 module.exports = {
     get_paper,
